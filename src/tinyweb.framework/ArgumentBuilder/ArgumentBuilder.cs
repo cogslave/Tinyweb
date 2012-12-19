@@ -55,6 +55,11 @@ namespace tinyweb.framework
                     }
                 }
 
+				if (!argumentDictionary.ContainsKey(parameter.Name) && parameter.IsOptional)
+				{
+					argumentDictionary.Add(parameter.Name, parameter.DefaultValue);
+				}
+
                 if (!argumentDictionary.ContainsKey(parameter.Name))
                 {
                     throw new Exception(String.Format("No argument was supplied for required parameter {0} ({1})", parameter.Name, parameter.ParameterType));
